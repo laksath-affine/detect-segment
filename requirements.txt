@@ -1,0 +1,43 @@
+# Core Libraries
+numpy==1.26.4
+python-dotenv==1.0.1
+requests==2.32.3
+pymongo==4.8.0
+azure-core==1.30.2
+
+# Libraries with Dependent Libraries
+torch==2.3.1
+torchvision==0.18.1
+transformers==4.42.3
+timm==1.0.7
+opencv-python==4.10.0.84
+supervision
+pycocotools==2.0.8
+
+# Other Dependencies
+addict==2.4.0
+yapf==0.40.2
+matplotlib==3.9.0
+rembg==2.0.57
+azure-storage-blob==12.20.0
+openai
+segment-anything==1.0
+
+# GroundingDINO from GitHub
+git+https://github.com/IDEA-Research/GroundingDINO.git
+
+
+# pip install numpy==1.26.4 python-dotenv==1.0.1 requests==2.32.3 pymongo==4.8.0 azure-core==1.30.2
+# pip install torch==2.3.1 torchvision==0.18.1 --index-url https://download.pytorch.org/whl/cu118
+# pip install transformers==4.42.3 timm==1.0.7 opencv-python==4.10.0.84 supervision==0.21.0 pycocotools==2.0.8 addict==2.4.0 yapf==0.40.2 matplotlib==3.9.0 rembg==2.0.57 azure-storage-blob==12.20.0 openai==1.35.8 segment-anything==1.0
+# pip install git+https://github.com/IDEA-Research/GroundingDINO.git
+
+
+# download the following:
+
+# models/sam/sam_vit_h_4b8939.pth 'https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth'
+# models/sam/sam_vit_l_0b3195.pth 'https://dl.fbaipublicfiles.com/segment_anything/sam_vit_l_0b3195.pth'
+# models/sam/sam_vit_b_01ec64.pth 'https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth'
+
+# models/groundingdino/groundingdino_swint_ogc.pth 'https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha/groundingdino_swint_ogc.pth'
+# models/groundingdino/groundingdino_swinb_cogcoor.pth 'https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha2/groundingdino_swinb_cogcoor.pth'

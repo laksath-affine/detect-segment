@@ -1,0 +1,16 @@
+*.png
+*.jpg
+.DS_Store
+*.pth
+.env
+*.ipynb
+json_data/
+__pycache__/
+item_upload/
+test_run.py
+.streamlit
+.ipynb_checkpoints
+wget-log
+*.csv
+*.log
+archives
