@@ -5,8 +5,7 @@ from azure.azure_blob_storage import is_image_url, upload_files_from_urls_to_blo
     delete_all_blobs_in_container, create_container_if_not_exists
 from azure.azure_embeddings import vectorize_image_with_url
 from azure.owclasses import OWCollections, OWContainers
-from azure.azure_variables import ow_db, blob_connection_string, \
-    vision_endpoint, vision_key, vision_api_version
+from azure.azure_variables import ow_db, blob_connection_string, vision_endpoint, vision_key
 from datetime import datetime
 from bson import ObjectId
 

@@ -3,7 +3,7 @@ from azure.azure_blob_storage import is_image_url, upload_files_to_blob_subfolde
 from azure.azure_embeddings import vectorize_image_with_filepath, vector_search
 from azure.owclasses import OWCollections, OWContainers
 from azure.gpt_gen import get_item_rankings
-from azure.azure_variables import ow_db, blob_connection_string, vision_endpoint, vision_key, vision_api_version
+from azure.azure_variables import ow_db, blob_connection_string, vision_endpoint, vision_key
 from bson import ObjectId
 from datetime import datetime
 from azure.azure_blob_storage import generate_sas_token
