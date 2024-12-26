@@ -91,8 +91,8 @@ def view_look_wardrobe_items(look_wardrobe_id = None, segmentation_item_id = Non
 
 def create_and_add_new_look_wardrobe():
     st.text_input("Create New Look", key="new_look_wardrobe_name")
-    st.text_input("Get URL", key="detect_segment_url")
-    st.text_input("Get DEVICE", key="device")
+    st.text_input("Get URL", key="detect_segment_url", value='http://68.154.38.49:8000/detect-segment-model/')
+    st.text_input("Get DEVICE", key="device", value='cpu')
     st.session_state['looks_file_upload'] = st.file_uploader("Upload an image")
     
     if st.button("Create"):
