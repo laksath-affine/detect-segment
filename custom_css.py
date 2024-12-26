@@ -5,7 +5,7 @@ def add_custom_css():
         """
         <style>
         .main .block-container {
-            max-width: 70%;
+            max-width: 90%;
             margin: auto;
             margin-top:0px;
             padding-top: 50px;
