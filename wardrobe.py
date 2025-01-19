@@ -10,7 +10,7 @@ from custom_css import page_l_title
 def wardrobe_page():
     page_l_title(f"Welcome to your Wardrobe, {st.session_state['user_name']}!")
 
-    col1, col2, _ = st.columns([0.15, 0.15, 0.7])
+    col1, col2, _ = st.columns([0.3, 0.3, 0.4])
     
     with col1:
         if st.button("View Wardrobes"):
@@ -36,7 +36,7 @@ def view_wardrobes():
     
     
     if selected_wardrobe:
-        col1, col2, _ = st.columns([0.15, 0.15, 0.7])
+        col1, col2, _ = st.columns([0.3, 0.3, 0.4])
             
         with col1:
             if st.button("View Wardrobe Items"):

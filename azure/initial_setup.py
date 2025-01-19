@@ -78,13 +78,12 @@ def process_wardrobe_item_local(file_path):
     json_data = {
         "_id": str(ObjectId()),
         "jsonData": {},
-        "itemCategory": file_path.split("/")[-1].split(".")[0]
+        "itemCategory": file_path.split("/")[-2]
     }
     upload_wardrobe_item(json_data, blob_names[0], image_embeddings)
         
 def upload_wardrobe_items_from_folder(folder_path):  
     folders = [f'{folder_path}/{d}' for d in os.listdir(folder_path) if os.path.isdir(os.path.join(folder_path, d))]
-    print(folders)
     for folder in folders:
         files = [f'{folder}/{f}' for f in os.listdir(folder) if os.path.isfile(os.path.join(folder, f))]
         with ThreadPoolExecutor() as executor:
