@@ -91,7 +91,6 @@ def upload_wardrobe_item(filepath, json_data):
         "jsonData": json_data["jsonData"],
         "blobName": blob_names[0],
         "imageEmbeddingIVF1": image_embeddings,
-        "ImageGPTDescriptionDetailed": json_data["ImageGPTDescriptionDetailed"],
         "itemCategory": json_data["itemCategory"],
         "isActive": True,
         "createdAt": time_now,
