@@ -3,11 +3,12 @@ from azure.azure_mongo import insert_one_into_collection, read_from_json,\
     create_vector_ivf_index, delete_collection, create_or_get_collection
 from azure.azure_blob_storage import is_image_url, upload_files_from_urls_to_blob_subfolder,\
     delete_all_blobs_in_container, create_container_if_not_exists
-from azure.azure_embeddings import vectorize_image_with_url
+from azure.azure_embeddings import vectorize_image_with_url, vectorize_image_with_filepath
 from azure.owclasses import OWCollections, OWContainers
 from azure.azure_variables import ow_db, blob_connection_string, vision_endpoint, vision_key
 from datetime import datetime
 from bson import ObjectId
+import os
 
 def sample_user_entry():
     time_now = datetime.now()
@@ -71,7 +72,24 @@ def process_wardrobe_item(json_data):
         image_embeddings = vectorize_image_with_url(image_url, vision_endpoint, vision_key)
         upload_wardrobe_item(json_data, blob_names[0], image_embeddings)
 
+def process_wardrobe_item_local(file_path):
+    blob_names = upload_files_from_urls_to_blob_subfolder(blob_connection_string, "wardrobe-item", [file_path], "")
+    image_embeddings = vectorize_image_with_filepath(file_path, vision_endpoint, vision_key)
+    json_data = {
+        "_id": str(ObjectId()),
+        "jsonData": {},
+        "itemCategory": file_path.split("/")[-1].split(".")[0]
+    }
+    upload_wardrobe_item(json_data, blob_names[0], image_embeddings)
         
+def upload_wardrobe_items_from_folder(folder_path):  
+    folders = [f'{folder_path}/{d}' for d in os.listdir(folder_path) if os.path.isdir(os.path.join(folder_path, d))]
+    print(folders)
+    for folder in folders:
+        files = [f'{folder}/{f}' for f in os.listdir(folder) if os.path.isfile(os.path.join(folder, f))]
+        with ThreadPoolExecutor() as executor:
+            executor.map(process_wardrobe_item_local, files)
+
 def upload_wardrobe_items_from_json(file_path):  
     data = read_from_json(file_path)
     with ThreadPoolExecutor() as executor:
@@ -93,4 +111,6 @@ def create_initial_setup():
 
     sample_user_entry()
     sample_wardrobe_entry()
-    upload_wardrobe_items_from_json('json_data/items.json')
+    # upload_wardrobe_items_from_json('json_data/items.json')
+    upload_wardrobe_items_from_folder("C:/Users/affine/Downloads/dataset")
+    

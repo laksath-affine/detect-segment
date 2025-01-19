@@ -99,9 +99,6 @@ def upload_files_from_urls_to_blob_subfolder(connection_string: str, container_n
     # Create a BlobServiceClient
     blob_service_client = BlobServiceClient.from_connection_string(connection_string)
     
-    # Get a ContainerClient
-    container_client = blob_service_client.get_container_client(container_name)
-    
     filenames = []
     
     for file_url in file_urls:
@@ -116,14 +113,18 @@ def upload_files_from_urls_to_blob_subfolder(connection_string: str, container_n
         blob_client = blob_service_client.get_blob_client(container=container_name, blob=blob_name)
         
         # Download the file from the URL
-        response = requests.get(file_url)
-        response.raise_for_status()  # Ensure the request was successful
-        
+        if file_url.endswith(image_extensions):
+            with open(file_url, "rb") as file:
+                binary_content = file.read()
+        else:
+            response = requests.get(file_url)
+            response.raise_for_status()  # Ensure the request was successful
+            binary_content = response.content
+            
         # Upload the downloaded file content to blob
-        blob_client.upload_blob(response.content, overwrite=True)
+        blob_client.upload_blob(binary_content, overwrite=True)
         
         # print(f"Uploaded {file_name} to {custom_folder} in container {container_name}.")
-        
         filenames.append(blob_name)
     
     return filenames
