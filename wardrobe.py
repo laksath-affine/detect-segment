@@ -90,8 +90,7 @@ def add_items_to_wardrobe():
     )
     
     if st.button("Upload"):
-        if st.session_state['wardrobe_file_upload'] is not None and \
-            st.session_state['wardrobe_item_description'] and st.session_state['wardrobe_item_category']:
+        if st.session_state['wardrobe_file_upload'] is not None and st.session_state['wardrobe_item_category']:
             file_extension = st.session_state['wardrobe_file_upload'].name.split('.')[-1]
             
             folder_path = f'{os.path.dirname(__file__)}/wardrobe_image'
